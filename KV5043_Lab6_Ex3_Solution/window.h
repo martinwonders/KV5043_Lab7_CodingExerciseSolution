@@ -27,8 +27,8 @@ enum class ObjectType
 	BALL
 };
 
-//ToDo: Exercise 2: Create a struct named GameObject with the following member variables to store the following: ObjectType, x position,
-// y position, width, height, Colour and velocity, use list initialisation to initialise the colour to white and the velocity to 0.
+//ToDo: Exercise 2: Create a struct named GameObject with the following member variables to store the following: objType (ObjectType), x position (float),
+// y position (float), width (float), height (float), colour using the above Colour struct and velocity using the above Vec2D struct, use list initialisation to initialise the colour to white and the velocity to 0.
 struct GameObject
 {
 	ObjectType type;
