@@ -27,7 +27,7 @@ enum class ObjectType
 	BALL
 };
 
-//ToDo: Create a struct named GameObject with the following member variables to store the following: Object type, x position,
+//ToDo: Exercise 2: Create a struct named GameObject with the following member variables to store the following: Object type, x position,
 // y position, width, height, Colour and velocity
 struct GameObject
 {
