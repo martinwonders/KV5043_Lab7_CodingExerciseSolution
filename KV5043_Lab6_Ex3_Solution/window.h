@@ -28,7 +28,7 @@ enum class ObjectType
 };
 
 //ToDo: Exercise 2: Create a struct named GameObject with the following member variables to store the following: ObjectType, x position,
-// y position, width, height, Colour and velocity
+// y position, width, height, Colour and velocity, use list initialisation to initialise the colour to white and the velocity to 0.
 struct GameObject
 {
 	ObjectType type;
