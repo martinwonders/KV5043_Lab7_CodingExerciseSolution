@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A43612C9-A3AE-4213-973F-ED8E71E79F5B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KV5043_Lab6_Ex3_Solution", "KV5043_Lab6_Ex3_Solution\KV5043_Lab6_Ex3_Solution.vcxproj", "{B88D4A67-2944-43AC-9E87-AFDFDC130410}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Debug|x64.ActiveCfg = Debug|x64
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Debug|x64.Build.0 = Debug|x64
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Debug|x86.ActiveCfg = Debug|Win32
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Debug|x86.Build.0 = Debug|Win32
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Release|x64.ActiveCfg = Release|x64
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Release|x64.Build.0 = Release|x64
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Release|x86.ActiveCfg = Release|Win32
+		{B88D4A67-2944-43AC-9E87-AFDFDC130410}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A63920A-FAB3-4F06-8DD9-BAB6CA7E2010}
+	EndGlobalSection
+EndGlobal
