@@ -104,7 +104,7 @@ public:
 	void setLocation(int x, int y);
 	void setDimensions(int width, int height);
 	void setWindowColour(Colour &colour);
-	void addGameObject(GameObject& rect);
+	void addGameObject(GameObject& object);
 	bool showFrameRate;
 	~Window();
 	
