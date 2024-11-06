@@ -143,9 +143,9 @@ void Window::setWindowColour(Colour& colour)
 	this->windowColour = colour;
 }
 
-void Window::addGameObject(GameObject& rect)
+void Window::addGameObject(GameObject& object)
 {
-	GameObjectsToRender.push_back(rect);
+	GameObjectsToRender.push_back(object);
 }
 
 Window::~Window()
