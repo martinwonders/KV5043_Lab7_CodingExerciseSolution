@@ -66,8 +66,8 @@ struct GameObject
 			velocity.y = velocity.y + 200;
 		}
 
-		xPosition = xPosition + velocity.x * frameTime;
-		yPosition = yPosition + velocity.y * frameTime;
+		xPosition = xPosition + velocity.x * static_cast<float>(frameTime);
+		yPosition = yPosition + velocity.y * static_cast<float>(frameTime);
 
 		//ToDo: make sure the player paddle can't got outside the top or bottom boundaries
 		if (type == ObjectType::PLAYER)
