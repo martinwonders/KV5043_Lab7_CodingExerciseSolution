@@ -28,19 +28,19 @@ void Window::Render()
 	///////////////////////////////////
 	//Render everything here
 	///////////////////////////////////
-	for (GameObject& obj : GameObjectsToRender)
+	for (GameObject* obj : GameObjectsToRender)
 	{
 		SDL_Rect r;
-		r.x = static_cast<int>(obj.getXPosition());
-		r.y = static_cast<int>(obj.getYPosition());
-		r.w = static_cast<int>(obj.getWidth());
-		r.h = static_cast<int>(obj.getHeight());
+		r.x = static_cast<int>(obj->getXPosition());
+		r.y = static_cast<int>(obj->getYPosition());
+		r.w = static_cast<int>(obj->getWidth());
+		r.h = static_cast<int>(obj->getHeight());
 		SDL_SetRenderDrawColor(
 			renderer, 
-			obj.getColour().red,
-			obj.getColour().blue,
-			obj.getColour().green,
-			obj.getColour().alpha
+			obj->getColour().red,
+			obj->getColour().blue,
+			obj->getColour().green,
+			obj->getColour().alpha
 		);
 		SDL_RenderFillRect(renderer, &r);
 	}
@@ -95,23 +95,23 @@ void Window::Run()
 			
 		}
 
-		GameObject &player = GameObjectsToRender[0];
-		GameObject &ball = GameObjectsToRender[1];
+		GameObject* player = GameObjectsToRender[0];
+		GameObject* ball = GameObjectsToRender[1];
 
 		// Check for collision between the BALL and PLAYER
-		if (ball.getType() == ObjectType::BALL && player.getType() == ObjectType::PLAYER &&
-			ball.getXPosition() < player.getXPosition() + player.getWidth() &&
-			ball.getXPosition() + ball.getWidth() > player.getXPosition() &&
-			ball.getYPosition() < player.getYPosition() + player.getHeight() &&
-			ball.getYPosition() + ball.getHeight() > player.getYPosition())
+		if (ball->getType() == ObjectType::BALL && player->getType() == ObjectType::PLAYER &&
+			ball->getXPosition() < player->getXPosition() + player->getWidth() &&
+			ball->getXPosition() + ball->getWidth() > player->getXPosition() &&
+			ball->getYPosition() < player->getYPosition() + player->getHeight() &&
+			ball->getYPosition() + ball->getHeight() > player->getYPosition())
 		{
-			ball.OnCollision();  // Call OnCollision on the ball
+			ball->OnCollision();  // Call OnCollision on the ball
 		}
 		
 		//Every Object that has been added is updated here by calling it's Update() method
-		for (GameObject& obj : GameObjectsToRender)
+		for (GameObject* obj : GameObjectsToRender)
 		{
-			obj.Update(frameTime);
+			obj->Update(frameTime);
 		}
 
 		SDL_SetRenderDrawColor(renderer, windowColour.red, windowColour.green, windowColour.blue, windowColour.alpha);
@@ -143,13 +143,18 @@ void Window::setWindowColour(Colour& colour)
 	this->windowColour = colour;
 }
 
-void Window::addGameObject(GameObject& object)
+void Window::addGameObject(GameObject* object)
 {
 	GameObjectsToRender.push_back(object);
 }
 
 Window::~Window()
 {
+	for (GameObject* obj : GameObjectsToRender)
+	{
+		delete obj;
+		obj = nullptr;
+	}
 	GameObjectsToRender.clear();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);

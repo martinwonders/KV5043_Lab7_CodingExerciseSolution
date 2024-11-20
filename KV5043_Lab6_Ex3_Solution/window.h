@@ -134,7 +134,7 @@ public:
 	void setLocation(int x, int y);
 	void setDimensions(int width, int height);
 	void setWindowColour(Colour &colour);
-	void addGameObject(GameObject& object);
+	void addGameObject(GameObject* object);
 	bool showFrameRate;
 	~Window();
 	
@@ -156,5 +156,5 @@ private:
 	Colour windowColour;
 
 	//A vector of Game Objects
-	std::vector<GameObject> GameObjectsToRender;
+	std::vector<GameObject*> GameObjectsToRender;
 };

@@ -108,7 +108,7 @@ void addGameObjectsFromFile(const std::string& fileName, Window& aWindow)
 			Vec2D velocity = { xVelocity, yVelocity };
 
 			//The Game Object struct needs a constructor for this to work
-			GameObject rec = GameObject( type, xPos, yPos, width, height, colour, velocity);
+			GameObject* rec = new GameObject( type, xPos, yPos, width, height, colour, velocity);
 
 			//All game objects are added to the GameObjects Vector 
 			aWindow.addGameObject(rec);
