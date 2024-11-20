@@ -31,16 +31,16 @@ void Window::Render()
 	for (GameObject& obj : GameObjectsToRender)
 	{
 		SDL_Rect r;
-		r.x = static_cast<int>(obj.xPosition);
-		r.y = static_cast<int>(obj.yPosition);
-		r.w = static_cast<int>(obj.width);
-		r.h = static_cast<int>(obj.height);
+		r.x = static_cast<int>(obj.getXPosition());
+		r.y = static_cast<int>(obj.getYPosition());
+		r.w = static_cast<int>(obj.getWidth());
+		r.h = static_cast<int>(obj.getHeight());
 		SDL_SetRenderDrawColor(
 			renderer, 
-			obj.colour.red,
-			obj.colour.blue,
-			obj.colour.green,
-			obj.colour.alpha
+			obj.getColour().red,
+			obj.getColour().blue,
+			obj.getColour().green,
+			obj.getColour().alpha
 		);
 		SDL_RenderFillRect(renderer, &r);
 	}
@@ -99,11 +99,11 @@ void Window::Run()
 		GameObject &ball = GameObjectsToRender[1];
 
 		// Check for collision between the BALL and PLAYER
-		if (ball.type == ObjectType::BALL && player.type == ObjectType::PLAYER &&
-			ball.xPosition < player.xPosition + player.width &&
-			ball.xPosition + ball.width > player.xPosition &&
-			ball.yPosition < player.yPosition + player.height &&
-			ball.yPosition + ball.height > player.yPosition)
+		if (ball.getType() == ObjectType::BALL && player.getType() == ObjectType::PLAYER &&
+			ball.getXPosition() < player.getXPosition() + player.getWidth() &&
+			ball.getXPosition() + ball.getWidth() > player.getXPosition() &&
+			ball.getYPosition() < player.getYPosition() + player.getHeight() &&
+			ball.getYPosition() + ball.getHeight() > player.getYPosition())
 		{
 			ball.OnCollision();  // Call OnCollision on the ball
 		}

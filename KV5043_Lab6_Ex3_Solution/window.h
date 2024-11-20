@@ -19,7 +19,6 @@ struct Colour
 	Uint8 alpha;
 };
 
-//ToDo: Exercise 1: Create an enum named ObjectType with UNKNOWN, PLAYER and BALL 
 enum class ObjectType 
 {
 	UNKNOWN,
@@ -27,75 +26,106 @@ enum class ObjectType
 	BALL
 };
 
-//ToDo: Exercise 2: Create a struct named GameObject with the following member variables to store the following: objType (ObjectType), x position (float),
-// y position (float), width (float), height (float), colour using the above Colour struct and velocity using the above Vec2D struct, use list initialisation to initialise the colour to white and the velocity to 0.
-struct GameObject
+class GameObject
 {
-	ObjectType type;
-	float xPosition;
-	float yPosition;
-	float width;
-	float height;
-	Colour colour{ 0,255,0,255 };
-	Vec2D velocity{ 0.0f ,0.0f };
+	ObjectType m_type;
+	float m_xPosition;
+	float m_yPosition;
+	float m_width;
+	float m_height;
+	Colour m_colour{ 0,255,0,255 };
+	Vec2D m_velocity{ 0.0f ,0.0f };
 
-	//ToDo: Create a constructor that initialises all the member variables
-	GameObject(ObjectType theType, float x, float y, float w, float h, Colour col, Vec2D vel)
+public:
+	GameObject()
 	{
-		type = theType;
-		xPosition = x;
-		yPosition = y;
-		width = w;
-		height = h;
-		colour = col;
-		velocity = vel;
+		m_type = ObjectType::UNKNOWN;
+		m_xPosition = 0.0f;
+		m_yPosition = 0.0f;
+		m_width = 0.0f;
+		m_height = 0.0f;
+		m_colour = { 255, 255, 255, 255 };
+		m_velocity = { 0.0f, 0.0f };
 	}
 
-	//ToDo: create an Update(double frameTime) method that updates the position based on adding the velocity
-	// and frameTime to the current position 
+	GameObject(ObjectType type, float x, float y, float w, float h, Colour col, Vec2D vel):
+		m_type(type), m_xPosition(x), m_yPosition(y), m_width(w), m_height(h), m_colour(col),
+		m_velocity(vel)
+	{}
+
+	ObjectType getType() const
+	{
+		return m_type;
+	}
+
+	float getXPosition() const
+	{
+		return m_xPosition;
+	}
+
+	float getYPosition() const
+	{
+		return m_yPosition;
+	}
+
+	float getWidth() const
+	{
+		return m_width;
+	}
+
+	float getHeight() const
+	{
+		return m_height;
+	}
+
+	Colour getColour() const
+	{
+		return m_colour;
+	}
+
 	void Update(double frameTime)
 	{
-		//ToDo: Use HtKeyboard::instance.NewKeyPressed(SDL_SCANCODE_UP) to move the player paddle up
-		if (HtKeyboard::instance.NewKeyPressed(SDL_SCANCODE_UP) && type == ObjectType::PLAYER)
+		
+		if (HtKeyboard::instance.NewKeyPressed(SDL_SCANCODE_UP) && m_type == ObjectType::PLAYER)
 		{
-			velocity.y = velocity.y - 200;
+			m_velocity.y = m_velocity.y - 200;
 		}
-		//ToDo: Use HtKeyboard::instance.NewKeyPressed(SDL_SCANCODE_DOWN) to move the player paddle down
-		else if (HtKeyboard::instance.NewKeyPressed(SDL_SCANCODE_DOWN) && type == ObjectType::PLAYER)
+		else if (HtKeyboard::instance.NewKeyPressed(SDL_SCANCODE_DOWN) && m_type == ObjectType::PLAYER)
 		{
-			velocity.y = velocity.y + 200;
+			m_velocity.y = m_velocity.y + 200;
 		}
 
-		xPosition = xPosition + velocity.x * static_cast<float>(frameTime);
-		yPosition = yPosition + velocity.y * static_cast<float>(frameTime);
+		m_xPosition = m_xPosition + m_velocity.x * static_cast<float>(frameTime);
+		m_yPosition = m_yPosition + m_velocity.y * static_cast<float>(frameTime);
 
-		//ToDo: make sure the player paddle can't got outside the top or bottom boundaries
-		if (type == ObjectType::PLAYER)
+		if (m_type == ObjectType::PLAYER)
 		{
-			yPosition = yPosition < 0 ? 0 : yPosition;
-			yPosition = yPosition > 550 ? 550 : yPosition;
+			m_yPosition = m_yPosition < 0 ? 0 : m_yPosition;
+			m_yPosition = m_yPosition > 550 ? 550 : m_yPosition;
 		}
-		//ToDo: make sure the ball can't got outside the top, bottom or right boundaries
-		if (type == ObjectType::BALL)
+		
+		if (m_type == ObjectType::BALL)
 		{
-			velocity.y = yPosition < 0 || yPosition > 590 ? -velocity.y : velocity.y;
-			velocity.x = xPosition > 800 ? -velocity.x : velocity.x;
+			m_velocity.y = m_yPosition < 0 || m_yPosition > 590 ? -m_velocity.y : m_velocity.y;
+			m_velocity.x = m_xPosition > 800 ? -m_velocity.x : m_velocity.x;
 		}
 		
 	}
 
-	//ToDo: Create an on collision method that only works for the ball
+	
 	void OnCollision()
 	{
-		if (type == ObjectType::BALL)
+		if (m_type == ObjectType::BALL)
 		{
-			velocity.x = -velocity.x;
+			m_velocity.x = -m_velocity.x;
 		}
 	}
 
+
+
 };
 
-struct Window
+class Window
 {
 public:
 	Window();
